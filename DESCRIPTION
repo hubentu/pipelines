@@ -1,0 +1,13 @@
+Package: pipelines
+Title: Bioinformatics pipelines using Rcwl
+Version: 0.0.0.9000
+Authors@R: person("Qiang", "Hu", email = "qiang.hu@roswellpark.org", role = c("aut", "cre"))
+Description: Bioinformatics pipelines created with Rcwl.
+Depends: R (>= 3.5.1), Rcwl
+License: GPL
+Encoding: UTF-8
+LazyData: true
+Suggests: testthat,
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr

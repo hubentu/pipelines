@@ -1,0 +1,44 @@
+---
+title: "User Guide"
+author: "Vignette Author"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{User Guide}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+
+Available tools and pipelines:
+```{r}
+library(pipelines)
+data(package = "pipelines")
+```
+
+# RNASeq pipeline
+## STAR and featureCounts
+This pipepline includes `fastQC` for reads quality summary, `STAR` for alignment, `samtools` for indexing and BAM summary, and `featureCounts` for quantification.
+
+To load the pipeline.
+```{r}
+data(rnaseq_Sf)
+```
+
+Run it.
+```{r, eval=FALSE}
+fqs <- c("../data/SRR1919599_1.fastq.gz",
+         "../data/SRR1919599_2.fastq.gz")
+rnaseq_Sf$cwl_genomeDir <- "/rpcc/bioinformatics/reference/STAR/GRCh38_75"
+rnaseq_Sf$cwl_sjdbGTFfile <- "/rpcc/bioinformatics/annotation/GENECODE/gencode.v25.annotation.gtf"
+rnaseq_Sf$cwl_seqfiles <- fqs
+res <- runCWL(rnaseq_Sf)
+```
+
